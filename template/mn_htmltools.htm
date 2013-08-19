@@ -8,6 +8,7 @@
 </div>
 
 <script type="text/javascript" src="source/plugin/vizto_csshtml/javascript/combo.js"></script>
+<script type="text/javascript">isUndefined(BROWSER.real_firefox) && (BROWSER.real_firefox = USERAGENT.indexOf('firefox') !== -1) && (HTMLNODE.className = 'firefox');</script>
 <style type="text/css">
 /*!CSS Gradient Editor Written by Alex Sirota(alex @ iosart.com) Copyright(c) Alex Sirota 2010,All Rights Reserved Please do not use without permission */
 .navigation-link, .navigation-link:link, .navigation-link:visited, .navigation-link:active { color: #555555; }
@@ -15,7 +16,6 @@
 #editor-heading h1 { padding-left: 15px; }
 #editor-heading p { padding-left: 17px; font-size: 114%; color: #6A6A6A; }
 .info-panel { width: 900px; padding: 1em 1em; margin: 1em auto; line-height: 1.4em; }
-.info-panel, .gradient-control { background: #FFFFFF; border: 1px solid #DDDDDD; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1); -o-box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1); box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1); }
 h1 { margin: 4px 0 0 0; padding: 0; font-size: 26px; }
 .info-panel h2 { font-size: 21px; margin: 0; }
 .info-panel h3 { font-size: 15px; margin: 1em 0 0 0; }
@@ -30,12 +30,13 @@ h1 { margin: 4px 0 0 0; padding: 0; font-size: 26px; }
 .gradient-control { font-family: arial; position: relative; padding: 1em 1em 30px 1em; width: 900px; margin: 0 auto; }
 .gradient-control .column { float: left; margin-left: 20px; }
 .gradient-control .column.right { margin-left: 40px; }
+.gradient-panel-holder { margin: 20px 10px; width: 430px; }
 .gradient-background { background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpiPHPmDAMMGBsbw9lMDDgA6RKM%2F%2F%2F%2Fh3POnj1LCzsAAgwAQtYIcFfEyzkAAAAASUVORK5CYII%3D'); }
 .gradient-panel-background { height: 42px; }
 .gradient-panel { height: 40px; border: 1px solid #999999; }
-.gradient-control .stop-markers { position: relative; cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ1JREFUeNq8VAEKwCAITOn%2FX3ZzTBCxUicTBsvsOO9EIKJhAwCe5H0H4xBvLQgOegV8yZ8AZwJHc8zKI4c53bk6IGNqMH3GCJuMlkeG4p4G1e5Lq1KXatmCM7AdrbLLq7FC0agycx7oXOmk8%2FY%2FPNjRR7s6ZFHFqY5AcasLFDPtpAC7WH7aNkxgO9gdLNv3oWdKiKXX7r8bu6rlJcAA9ZRfMt5oHoIAAAAASUVORK5CYII%3D') 5 0, pointer; width: 400px; height: 20px; }
+.gradient-control .stop-markers { position: relative; cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ1JREFUeNq8VAEKwCAITOn%2FX3ZzTBCxUicTBsvsOO9EIKJhAwCe5H0H4xBvLQgOegV8yZ8AZwJHc8zKI4c53bk6IGNqMH3GCJuMlkeG4p4G1e5Lq1KXatmCM7AdrbLLq7FC0agycx7oXOmk8%2FY%2FPNjRR7s6ZFHFqY5AcasLFDPtpAC7WH7aNkxgO9gdLNv3oWdKiKXX7r8bu6rlJcAA9ZRfMt5oHoIAAAAASUVORK5CYII%3D') 5 0, pointer; height: 20px; }
 .macos .gradient-control .stop-markers { cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy%2BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAelJREFUeNqMVDuPAVEYvbNEtYlniMRGiKg2NAoS2caj8Af8AL0foVdJVAqNBA2VxFYahQrR2ERCsokQCrG7xGu%2F%2Fe63TBgzEyc5zsx9nHvvd%2BZ6AgAmpdFoBMb4430f5xWcyI%2Bz%2FkM6OB6PwwVKplcwIX%2FOStAyCfr9PnsAfEdPyBfkF%2FIV%2BYn8vTPUaDSPGL4jn%2FlwpAVZRZ6Q33LHuTmyVqsldTqdEIvFzs20QxfyDTk7q4vapYY%2Bn080DAaD0Gw26TkQCIiLhMNhUKohmUQiETEAQRBo4ul0glwuJ5qn02nSUChEajabQTZlvhpHt9slU7fbDY9A8Qvw%2B%2F0wHo%2BlAwmdToe01WrB8XiEdrtN75PJRNmwWCyC1%2BuF9XpNg3e7HelyuQSTyUTtHo%2BH2iwWC%2BlgMFA25D%2BVSgUSicTNkWazGdXpcDjQ5Ol0Cna7nfqy2ay6IafNZqM6XrBYLOASkMPhgNVqBQaDQSxLrVZTNyyVSqDX66HX64mm%2BXyeNJVKkWYyGeAlUr3n1y%2FVahWsVisMh0PVdOv1uqKhILnsFFK5XGaFQoHpdDo2n8%2FZfr9no9GIYSgsGo3yiYLipZRbhdeTd8mRB6i0O9kdcjQaDdhut2yz2TC8y0RMnGFQLJlMCmr%2FGn8CDADjZb9gHU6eaQAAAABJRU5ErkJggg%3D%3D') 5 0, pointer; }
-.gradient-control .stop-markers-deleter { width: 400px; height: 10px; }
+.gradient-control .stop-markers-deleter { height: 10px; }
 .gradient-control .stop-markers-opacity-deleter { margin-bottom: 10px; }
 .gradient-control .stop-markers-color-deleter { margin-top: 10px; }
 .stop-marker { cursor: default; width: 11px; height: 17px; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAARCAYAAADZsVyDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJNJREFUeNrsU0EOgCAM2wi%2FgD%2FCU%2BCP%2FGOKiUZx03rwYGIvy5au6cZgEaERzDyXhQmAxXUacR8RUY3rNFErt5yWUs696yosEW1Mbfyx5pBxkV2Prj3SvHdjPVZKqddk23tP6AG6szvknGkRbq3dkmOMS0S5fk1CCObd1loPUyFcRy%2FhF%2F6wsLdO6goI9%2FHPQzEJMAB64VRGrQShWQAAAABJRU5ErkJggg%3D%3D'); background-position: right; position: absolute; }
@@ -51,6 +52,7 @@ h1 { margin: 4px 0 0 0; padding: 0; font-size: 26px; }
 .stop-details { margin-top: 20px; }
 .stop-details .disabled { color: #666666; }
 .stop-details .details-panel { float: left; margin: 15px 0 10px 0; }
+.stop-details .details-panel button { margin-top: -5px; }
 .stop-details .delete-button { float: right; margin-right: 1em; }
 .stop-details .stop-type-label { float: left; margin-left: 1em; width: 55px; text-align: right; line-height: 20px; }
 .stop-details .color { cursor: pointer; width: 40px; height: 20px; border: 1px solid #999999; }
@@ -95,12 +97,12 @@ h1 { margin: 4px 0 0 0; padding: 0; font-size: 26px; }
 .css-output .css-options { margin: 3px 7px 7px 7px; }
 .css-output input.css-comments { margin-left: 1em; }
 .css-output .css-comments { vertical-align: middle; }
-.css-output .css-ie9-support-help { font-size: .85em; }
+.css-output .css-ie9-support-help {  }
 .css-output .import-buttons {  }
-.css-output button.import { font-size: .8em; float: right; }
+.css-output button.import { float: right; margin: 0 0 0 2px; font-family: 'Courier New'; }
 .inner-sub-panel { margin: 7px; padding: .5em 1em; border: 1px solid #BBBBBB; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; line-height: 1.5em; font-size: .9em; background: #E9E9E9; background: -moz-linear-gradient(top, #F2F2F2 0, #E5E5E5 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F2F2F2), color-stop(100%, #E5E5E5)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F2F2F2', endColorstr='#e5e5e5', GradientType=0); }
 .inner-sub-panel .dialog-button-panel { float: right; margin-top: .5em; }
-.inner-sub-panel .dialog-button-panel button { width: 5em; font-size: .9em; }
+.inner-sub-panel .dialog-button-panel button {  }
 .import-css-input-panel .import-css-text { width: 99%; height: 5em; margin-top: .5em; }
 .import-image-input-panel .import-image-url-input { width: 320px; }
 .preview .preview-panel-background { margin: 1em; width: 90px; height: 30px; max-width: 370px; max-height: 350px; min-width: 20px; min-height: 20px; border: 1px solid #666666; position: relative; overflow: hidden; }
@@ -111,11 +113,13 @@ h1 { margin: 4px 0 0 0; padding: 0; font-size: 26px; }
 .preview .output-options .dimension { width: 2em; }
 .preview .output-options .preview-as-ie { vertical-align: middle; }
 .presets { height: 150px; }
-.presets .presets-container { margin: 15px; border: 2px inset #DDDDDD; height: 115px; overflow: auto; }
-.presets .preset-item-background { width: 30px; height: 30px; border: 1px inset #000000; float: left; display: block; cursor: pointer; }
+.presets .presets-container { margin: 15px; border: 1px inset #949494; height: 115px; overflow: auto; }
+.presets .preset-item-background { width: 30px; height: 30px; border: 1px solid #000000; float: left; display: block; cursor: pointer; margin: 1px; }
 .presets .preset-item { width: 100%; height: 100%; }
-.gradient-name { margin-top: 10px; margin-left: 3px; }
+.gradient-name { margin: 10px auto; width: 440px; }
 .gradient-name .name-input { width: 288px; height: 28px; box-sizing: border-box; margin-top: 1px; vertical-align: top; }
+.ie_all .gradient-name .name-input { margin-top: 0; height: 30px; }
+.firefox .gradient-name .name-input { -moz-box-sizing: border-box; }
 .gradient-name .save-new-preset { font-size: 14px; min-width: 55px; }
 .colorpicker { padding: 1em; }
 .colorpicker .dialog-button { width: 8em; margin-left: 1em; margin-bottom: 5px; }
@@ -220,11 +224,11 @@ div.menu a { display: block; text-decoration: none; cursor: default; outline: no
 .noselect { -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; }
 .dialog-panel { position: relative; border: 1px solid #999999; margin-top: 20px; }
 .dialog-panel .panel-label { position: absolute; top: -0.8em; left: .8em; background: #FFFFFF; padding: 0 3px; }
-button { height: 30px; padding: 0 30px; }
+button { height: 30px; padding: 0 30px; font-family: 'Courier New'; }
 </style>
 
-<div id="ct" class="cl wp ct2">
-<div class="mn">
+<div id="ct" class="gradient-control cl wp ct2">
+<div class="mn" style="overflow: visible;">
 	<div class="presets dialog-panel cl noselect">
 		<div class="panel-label">Presets</div>
 		<div class="presets-container"></div>
@@ -234,15 +238,7 @@ button { height: 30px; padding: 0 30px; }
 		<button class="save-new-preset" autocomplete="off">save</button>
 	</div>
 
-	<div class="stop-markers-deleter stop-markers-opacity-deleter noselect"></div>
-	<div class="stop-markers stop-markers-opacity noselect" title="Click to add an opacity stop"></div>
-	<div class="gradient-panel-background gradient-background">
-		<div class="gradient-panel noselect cl"></div>
-	</div>
-	<div class="stop-markers stop-markers-color noselect" title="Click to add a color stop"></div>
-	<div class="stop-markers-deleter stop-markers-color-deleter noselect"></div>
-
-	<div class="stop-details dialog-panel cl">
+	<div class="stop-details dialog-panel y cl">
 		<div class="panel-label">Stops</div>
 		<div class="stop-details-opacity cl">
 			<div class="details-panel">
@@ -259,6 +255,16 @@ button { height: 30px; padding: 0 30px; }
 			<div class="details-panel position-details">Location: <input size="3" class="position color-position">%</div>
 			<div class="details-panel delete-button color-delete-button"><button autocomplete="off">delete</button></div>
 		</div>
+	</div>
+
+	<div class="gradient-panel-holder">
+		<div class="stop-markers-deleter stop-markers-opacity-deleter noselect"></div>
+		<div class="stop-markers stop-markers-opacity noselect" title="Click to add an opacity stop"></div>
+		<div class="gradient-panel-background gradient-background">
+			<div class="gradient-panel noselect cl"></div>
+		</div>
+		<div class="stop-markers stop-markers-color noselect" title="Click to add a color stop"></div>
+		<div class="stop-markers-deleter stop-markers-color-deleter noselect"></div>
 	</div>
 
 	<div class="gradient-adjustments-panel dialog-panel cl">
@@ -516,11 +522,6 @@ button { height: 30px; padding: 0 30px; }
 			</tr>
 		</table>
 	</div>
-
-
-
-
-
 	<a name="features"></a>
 
 </div>
